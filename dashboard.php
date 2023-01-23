@@ -138,10 +138,9 @@
                                         <form action="actions/cetakAbsen.php" method="POST">
                                             <input type="hidden" name="user_id" value="<?= $currentUser['user_id'] ?>">
                                             <button type="submit" class="btn btn-primary" style="float: right;"><i class="fas fa-print"></i></button>
-                                        </form>
-                                                                            
+                                        </form>                             
                                     </div>
-                                    
+                                    <div class="card-body">
                                         <div class="table-responsive text-center">
                                             <table class="table">
                                                 <thead>
@@ -161,8 +160,7 @@
                                                             <td><?= $value['jam_masuk']?></td>
                                                             <td><?= $value['jam_keluar']?></td>
                                                             <td>
-                                                                <?php
-                                                                    
+                                                                <?php                                        
                                                                     if(!empty($value['jam_masuk']) && !empty($value['jam_keluar'])){
                                                                         echo "✔️";
                                                                     }else{
@@ -175,7 +173,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>

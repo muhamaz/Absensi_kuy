@@ -118,38 +118,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="table-responsive text-center">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>No.</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Tanggal</th>
-                                            <th>Clock In</th>
-                                            <th>Clock Out</th>
-                                            <th>Action</th>
-                                        </tr>
-                                    </thead>
-                                        <tbody>
-                                            <?php $i = 1; foreach($showAbsensi as $index=>$value): ?>
-                                                <tr>
-                                                    <td><?= $i++ ?></td>
-                                                    <td><?= $value['nama_lengkap'] ?></td>
-                                                    <td><?= $value['tanggal'] ?></td>
-                                                    <td><?= $value['jam_masuk']?></td>
-                                                    <td><?= $value['jam_keluar']?></td>
-                                                    <td>
-                                                            <a href="editabsen.php?id=<?= $value['id'] ?>">
-                                                                <button type="submit" class="btn btn-warning">Edit</button>
-                                                            </a>
-                                                    </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                </table>
+                            <div class="card-body">
+                                <div class="table-responsive text-center">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Tanggal</th>
+                                                <th>Clock In</th>
+                                                <th>Clock Out</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                            <tbody>
+                                                <?php $i = 1; foreach($showAbsensi as $index=>$value): ?>
+                                                    <tr>
+                                                        <td><?= $i++ ?></td>
+                                                        <td><?= $value['nama_lengkap'] ?></td>
+                                                        <td><?= $value['tanggal'] ?></td>
+                                                        <td><?= $value['jam_masuk']?></td>
+                                                        <td><?= $value['jam_keluar']?></td>
+                                                        <td>
+                                                                <a href="editabsen.php?id=<?= $value['id'] ?>">
+                                                                    <button type="submit" class="btn btn-warning">Edit</button>
+                                                                </a>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mt-5">
                             <div class="col-xl-12 col-md-12">
                                 <div class="card mb-4">
                                     <div class="card-header">
