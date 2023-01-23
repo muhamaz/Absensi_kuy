@@ -13,3 +13,12 @@ body {
     border-radius: 10px 10px 10px 10px;
     width: 500px;
 }
+
+.table-responsive {
+    height: 50px;
+    overflow: scroll;
+  }
+.scrollable{
+    height: 200px;
+    overflow: scroll;
+}
