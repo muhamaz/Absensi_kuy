@@ -8,7 +8,7 @@
 
     if(isset($_POST['masuk'])) { // Jika tombol masuk ditekan
 
-        $user_id = $_POST['user_id'];
+        $user_id = strtolower(stripslashes($_POST["user_id"]));
 		$password = mysqli_real_escape_string($db, $_POST['password']);
 
         $sql = "SELECT * FROM users WHERE user_id = '$user_id' AND password = '$password'";
@@ -25,6 +25,8 @@
         }
 
     }
+
+    
 ?>
 
 <html>
@@ -59,7 +61,7 @@
                 <form action="" method="POST" class="mb-4">
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fas fa-id-card"></i></span>
-                        <input type="text" class="form-control" placeholder="User id" aria-label="user_id"  name="user_id" required>
+                        <input type="text" class="form-control" placeholder="UID" aria-label="user_id"  name="user_id" required>
                     </div>
 
                     <div class="input-group mb-3">
@@ -67,11 +69,12 @@
                         <input type="password" class="form-control" placeholder="Password" aria-label="Password"  name="password" required>
                     </div>
 
-                    <a href="">
-                        <div class="d-grid gap-2">
-                            <button type="submit" name="masuk" class="btn btn-primary">Masuk</button>
-                        </div>
-                    </a>
+                    <div class="d-grid gap-2 mb-3">
+                        <button type="submit" name="masuk" class="btn btn-primary">Masuk</button>
+                    </div>
+
+                    <p class="text-center">Don't have any account? <a href="register.php">Click Here</a></p>
+                    
                 </form>
                 <!-- End of Form Login -->
                 </div>
