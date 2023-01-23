@@ -45,6 +45,13 @@
         
         <!-- FontAwesome -->
         <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+
+        <style>
+            .table-responsive{
+                height: 250px;
+                overflow: auto;
+            }
+        </style>
     </head>
 
     <body class="sb-nav">
@@ -109,31 +116,29 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body">
-                            <div class="table-responsive">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>Nama Lengkap</th>
-                                                        <th>Tanggal</th>
-                                                        <th>Clock In</th>
-                                                        <th>Clock Out</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <?php $i = 1; foreach($showAbsensi as $index=>$value): ?>
-                                                        <tr>
-                                                            <td><?= $i++ ?></td>
-                                                            <td><?= $value['nama_lengkap'] ?></td>
-                                                            <td><?= $value['tanggal'] ?></td>
-                                                            <td><?= $value['jam_masuk']?></td>
-                                                            <td><?= $value['jam_keluar']?></td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                            <div class="table-responsive text-center">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Nama Lengkap</th>
+                                            <th>Tanggal</th>
+                                            <th>Clock In</th>
+                                            <th>Clock Out</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
+                                            <?php $i = 1; foreach($showAbsensi as $index=>$value): ?>
+                                                <tr>
+                                                    <td><?= $i++ ?></td>
+                                                    <td><?= $value['nama_lengkap'] ?></td>
+                                                    <td><?= $value['tanggal'] ?></td>
+                                                    <td><?= $value['jam_masuk']?></td>
+                                                    <td><?= $value['jam_keluar']?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="row">

@@ -59,6 +59,12 @@
         <link href="assets/css/styles1.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .table-responsive{
+                height: 250px;
+                overflow: auto;
+            }
+        </style>
     </head>
 
     <body class="sb-nav">
@@ -135,8 +141,8 @@
                                         </form>
                                                                             
                                     </div>
-                                    <div class="card-body">
-                                        <div class="table-responsive">
+                                    
+                                        <div class="table-responsive text-center">
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -169,7 +175,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
