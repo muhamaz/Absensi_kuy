@@ -15,7 +15,6 @@
 
     if($currentUser['isAdmin'] != 2) {
         header("Location:dashboard.php");
-        exit;
     }
 
     $sqlShowizin = "SELECT * FROM izin LEFT JOIN users ON izin.user_id = users.user_id";

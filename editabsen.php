@@ -6,6 +6,10 @@ if ($_SESSION['status'] != "login"){
     header("location:index.php?");
 }
 
+if($_SESSION['isAdmin'] != 2) {
+    header("Location:dashboard.php");
+}
+
 date_default_timezone_set("Asia/Jakarta");
 
 $id = $_GET['id'];
