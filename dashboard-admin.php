@@ -24,6 +24,8 @@
     $sqlshowAbsen = "SELECT * FROM users JOIN absensi ON users.user_id = absensi.user_id";
     $showAbsensi = $db->query($sqlshowAbsen);
 
+    $res = $showAbsensi->fetch_row();
+
 ?>
 
 <!DOCTYPE html>
@@ -125,6 +127,7 @@
                                             <th>Tanggal</th>
                                             <th>Clock In</th>
                                             <th>Clock Out</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                         <tbody>
@@ -135,6 +138,11 @@
                                                     <td><?= $value['tanggal'] ?></td>
                                                     <td><?= $value['jam_masuk']?></td>
                                                     <td><?= $value['jam_keluar']?></td>
+                                                    <td>
+                                                            <a href="editabsen.php?id=<?= $value['id'] ?>">
+                                                                <button type="submit" class="btn btn-warning">Edit</button>
+                                                            </a>
+                                                    </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                         </tbody>
