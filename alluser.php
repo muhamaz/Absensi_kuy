@@ -96,7 +96,7 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-table me-1"></i>
-                                        Daftar Pegawai
+                                        Daftar User
                                         <a href="dashboard-admin.php"><button class="btn btn-primary" style="float: right;">Kembali</button></a>
                                     </div>
                                     <div class="card-body">
