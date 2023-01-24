@@ -139,10 +139,13 @@
                                                         <td><?= $value['jam_masuk']?></td>
                                                         <td><?= $value['jam_keluar']?></td>
                                                         <td>
-                                                            <form action="editabsen.php" method="POST">
-                                                                <input type="hidden" name="id" value="<?= $value['id']?>">
+                                                            <a href="editabsen.php?id=<?= $value['id'] ?>">
+                                                                <button type="button" class="btn btn-warning">Edit</button>
+                                                            </a>
+                                                            <!-- <form action="editabsen.php" method="POST">
+                                                                <input type="hidden" name="id" value="">
                                                                 <button type="submit" class="btn btn-warning">Edit</button>
-                                                            </form>
+                                                            </form> -->
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
