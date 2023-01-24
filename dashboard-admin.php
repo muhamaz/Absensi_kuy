@@ -49,7 +49,7 @@
 
         <style>
             .table-responsive{
-                height: 250px;
+                height: 400px;
                 overflow: auto;
             }
         </style>
@@ -139,9 +139,10 @@
                                                         <td><?= $value['jam_masuk']?></td>
                                                         <td><?= $value['jam_keluar']?></td>
                                                         <td>
-                                                                <a href="editabsen.php?id=<?= $value['id'] ?>">
-                                                                    <button type="submit" class="btn btn-warning">Edit</button>
-                                                                </a>
+                                                            <form action="editabsen.php" method="POST">
+                                                                <input type="hidden" name="id" value="<?= $value['id']?>">
+                                                                <button type="submit" class="btn btn-warning">Edit</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
@@ -158,64 +159,67 @@
                                         Daftar Izin User
                                         <a href="alluser.php"><button class="btn btn-primary" style="float: right;">Lihat Daftar User</button></a>
                                     </div>
-                                    <div class="card-body">
-                                        <table id="datatablesSimple">
-                                            <thead>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table id="datatablesSimple">
+                                        <thead>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>UID</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Keperluan</th>
+                                                <th>Tanggal keluar</th>
+                                                <th>Tanggal Kembali</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>No.</th>
+                                                <th>UID</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Keperluan</th>
+                                                <th>Tanggal keluar</th>
+                                                <th>Tanggal Kembali</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <?php $i = 1; foreach($showizin as $index => $value): ?>
                                                 <tr>
-                                                    <th>No.</th>
-                                                    <th>UID</th>
-                                                    <th>Nama Lengkap</th>
-                                                    <th>Keperluan</th>
-                                                    <th>Tanggal keluar</th>
-                                                    <th>Tanggal Kembali</th>
-                                                    <th>Action</th>
+                                                    <td><?=$i++?></td>
+                                                    <td><?= $value['user_id'] ?></td>
+                                                    <td><?= $value['nama_lengkap'] ?></td>
+                                                    <td><?= $value['keperluan'] ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($value['tanggal_keluar'])) ?></td>
+                                                    <td><?= date("d-m-Y", strtotime($value['tanggal_masuk'])) ?></td>
+                                                    <td>
+                                                        <?php if($value['isAccepted'] != 2){ ?>
+                                                            <div class="text-center">
+                                                                <form action="actions/actionacc.php" method="POST">
+                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                    <button type="submit" class="btn btn-success btn-sm mt-1 mb-1"><i class="fas fa-check"></i></button>
+                                                                </form>
+                                                                <form action="actions/hapusizin.php" method="POST">
+                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                    <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                </form>
+                                                            </div>
+                                                        <?php } else { ?>
+                                                            <div class="text-center">
+                                                                <form action="actions/hapusizin.php" method="POST">
+                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                    <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                </form>
+                                                            </div>
+                                                        <?php } ?>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>UID</th>
-                                                    <th>Nama Lengkap</th>
-                                                    <th>Keperluan</th>
-                                                    <th>Tanggal keluar</th>
-                                                    <th>Tanggal Kembali</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                <?php 
-                                                    $i = 1;
-                                                    foreach($showizin as $index => $value): ?>
-                                                    <tr>
-                                                        <td><?=$i++?></td>
-                                                        <td><?= $value['user_id'] ?></td>
-                                                        <td><?= $value['nama_lengkap'] ?></td>
-                                                        <td><?= $value['keperluan'] ?></td>
-                                                        <td><?= date("d-m-Y", strtotime($value['tanggal_keluar'])) ?></td>
-                                                        <td><?= date("d-m-Y", strtotime($value['tanggal_masuk'])) ?></td>
-                                                        <td>
-                                                            <?php if($value['isAccepted'] != 2){ ?>
-                                                                <div class="text-center">
-                                                                    <a href="actions/actionacc.php?izin_id=<?= $value['izin_id'] ?>">
-                                                                            <button type="button" class="btn btn-success btn-sm mt-1 mb-1"><i class="fas fa-check"></i></button>         
-                                                                    </a>
-                                                                    <a href="actions/hapusizin.php?izin_id=<?= $value['izin_id'] ?>">
-                                                                            <button type="button" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
-                                                                    </a>
-                                                                </div>
-                                                            <?php } else { ?>
-                                                                <div class="text-center">
-                                                                    <a href="actions/hapusizin.php?izin_id=<?= $value['izin_id'] ?>">
-                                                                            <button type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></button>
-                                                                    </a>
-                                                                </div>
-                                                            <?php } ?>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>

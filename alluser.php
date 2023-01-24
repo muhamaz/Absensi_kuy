@@ -100,52 +100,58 @@
                                         <a href="dashboard-admin.php"><button class="btn btn-primary" style="float: right;">Kembali</button></a>
                                     </div>
                                     <div class="card-body">
-                                        <table id="datatablesSimple">
-                                            <thead>
-                                                <tr>
-                                                    <th width="5">No.</th>
-                                                    <th>UID</th>
-                                                    <th>Nama Lengkap</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>UID</th>
-                                                    <th>Nama Lengkap</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                <?php 
-                                                    $i = 1;
-                                                    foreach($showAllUser as $index => $value): ?>
+                                        <div class="table-responsive">
+                                            <table id="datatablesSimple">
+                                                <thead>
                                                     <tr>
-                                                        <td><?=$i++?></td>
-                                                        <td><?= $value['user_id'] ?></td>
-                                                        <td>
-                                                            <?= $value['nama_lengkap'] ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php if($user_id == $value['user_id']) { ?>
-                                                                <p>&nbsp;</p>
-                                                            <?php } else if($value['isAdmin'] != 2) { ?>
-                                                                <a href="actions/actionpromote.php?user_id=<?= $value['user_id'] ?>">
-                                                                    <div class="text-center">
-                                                                        <button type="button" class="btn btn-success btn-sm btn-">Jadikan Admin</button>
-                                                                    </div>
-                                                                </a>
-                                                            <?php } else { ?>
-                                                                <a href="actions/actiondemote.php?user_id=<?= $value['user_id'] ?>">
-                                                                    <div class="text-center"><button type="button" class="btn btn-danger btn-sm btn-block">Cabut Admin</button></div>
-                                                                </a>
-                                                            <?php } ?>
-                                                        </td>
+                                                        <th width="5">No.</th>
+                                                        <th>UID</th>
+                                                        <th>Nama Lengkap</th>
+                                                        <th>Action</th>
                                                     </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>UID</th>
+                                                        <th>Nama Lengkap</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php 
+                                                        $i = 1;
+                                                        foreach($showAllUser as $index => $value): ?>
+                                                        <tr>
+                                                            <td><?=$i++?></td>
+                                                            <td><?= $value['user_id'] ?></td>
+                                                            <td>
+                                                                <?= $value['nama_lengkap'] ?>
+                                                            </td>
+                                                            <td>
+                                                                <?php if($user_id == $value['user_id']) { ?>
+                                                                    <p class="text-center">❌</p>
+                                                                <?php } else if($value['isAdmin'] != 2) { ?>
+                                                                    <form action="actions/actionpromote.php" method="POST">
+                                                                        <input type="hidden" name="user_id" value="<?= $value['user_id']?>">
+                                                                        <div class="text-center">
+                                                                            <button type="submit" class="btn btn-success btn-sm btn-">Jadikan Admin</button>
+                                                                        </div>
+                                                                    </form>
+                                                                <?php } else { ?>
+                                                                    <form action="actions/actiondemote.php" method="POST">
+                                                                        <input type="hidden" name="user_id" value="<?= $value['user_id']?>">
+                                                                        <div class="text-center">
+                                                                            <button type="submit" class="btn btn-danger btn-sm btn-block">Cabut Admin</button>
+                                                                        </div>
+                                                                    </form>
+                                                                <?php } ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

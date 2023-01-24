@@ -12,7 +12,7 @@ if($_SESSION['isAdmin'] != 2) {
 
 date_default_timezone_set("Asia/Jakarta");
 
-$id = $_GET['id'];
+$id = $_POST['id'];
 
 $qshowabsensi = "SELECT * FROM absensi WHERE id = '$id'";
 $showabs = $db->query($qshowabsensi);

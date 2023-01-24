@@ -2,7 +2,7 @@
     session_start();
     include ("../koneksi.php");
 
-    $izin_id = $_GET['izin_id'];
+    $izin_id = $_POST['izin_id'];
 
     $query = "SELECT * FROM izin LEFT JOIN users ON izin.user_id = users.user_id WHERE izin_id = '$izin_id'";
     $izinDetail = $db->query($query)->fetch_assoc();

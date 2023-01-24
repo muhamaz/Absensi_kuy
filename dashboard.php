@@ -61,7 +61,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             .table-responsive{
-                height: 250px;
+                height: 300px;
                 overflow: auto;
             }
         </style>
@@ -129,11 +129,11 @@
                                             Riwayat Absensi Anda
                                         </span>
                                         <form action="actions/absenOut.php" method="POST">
-                                            <a><button type="submit" class="btn btn-danger ms-3" style="float: right;">Absen Out</button></a>
+                                            <button type="submit" class="btn btn-danger ms-3" style="float: right;">Absen Out</button>
                                         </form>
                                         <form action="actions/absenIn.php" method="POST">
-                                        <input type="hidden" name="nama_lengkap" value="<?= $currentUser['nama_lengkap'] ?>">
-                                            <a><button type="submit" class="btn btn-success ms-3" style="float: right;">Absen In </button></a>
+                                            <input type="hidden" name="nama_lengkap" value="<?= $currentUser['nama_lengkap'] ?>">
+                                            <button type="submit" class="btn btn-success ms-3" style="float: right;">Absen In </button>
                                         </form>
                                         <form action="actions/cetakAbsen.php" method="POST">
                                             <input type="hidden" name="user_id" value="<?= $currentUser['user_id'] ?>">
@@ -215,55 +215,60 @@
                                         Permintaan izin Anda
                                     </div>
                                     <div class="card-body">
-                                        <table id="datatablesSimple">
-                                            <thead>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>Keperluan</th>
-                                                    <th>Tanggal keluar</th>
-                                                    <th>Tanggal masuk</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tfoot>
-                                                <tr>
-                                                    <th>No.</th>
-                                                    <th>Keperluan</th>
-                                                    <th>Tanggal keluar</th>
-                                                    <th>Tanggal Kembali</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </tfoot>
-                                            <tbody>
-                                                <?php $i = 1; foreach($showizin as $index=>$value): ?>
+                                        <div class="table-responsive">
+                                            <table id="datatablesSimple">
+                                                <thead>
                                                     <tr>
-                                                        <td><?= $i++ ?></td>
-                                                        <td><?= $value['keperluan'] ?></td>
-                                                        <td><?= date("d-m-Y", strtotime($value['tanggal_keluar'])) ?></td>
-                                                        <td><?= date("d-m-Y", strtotime($value['tanggal_masuk'])) ?></td>
-                                                        <td>
-                                                            <?php if($value['isAccepted'] == 2) { ?>
-                                                                    <div class='text-center'>
-                                                                        <a href="actions/cetak.php?izin_id=<?= $value['izin_id'] ?>">
-                                                                            <button type="button" class="btn btn-primary btn-sm mt-1 mb-1"><i class="fas fa-print"></i></button>
-                                                                        </a>
-                                                                        <a href="actions/hapusizinsaya.php?izin_id=<?= $value['izin_id'] ?>">
-                                                                            <button type="button" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
-                                                                        </a>
-                                                                    </div>
-                                                            <?php } else { ?>
-                                                                    <div class='text-center'>
-                                                                        <button class='btn btn-warning btn-sm mt-1 mb-1' disabled><i class="fas fa-clock"></i></button>
-                                                                        <a href="actions/hapusizinsaya.php?izin_id=<?= $value['izin_id'] ?>">
-                                                                            <button type="button" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
-                                                                        </a>
-                                                                    </div>
-                                                            <?php } ?>
-                                                        </td>
+                                                        <th>No.</th>
+                                                        <th>Keperluan</th>
+                                                        <th>Tanggal keluar</th>
+                                                        <th>Tanggal masuk</th>
+                                                        <th>Action</th>
                                                     </tr>
-                                                <?php endforeach; ?>
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Keperluan</th>
+                                                        <th>Tanggal keluar</th>
+                                                        <th>Tanggal Kembali</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody>
+                                                    <?php $i = 1; foreach($showizin as $index=>$value): ?>
+                                                        <tr>
+                                                            <td><?= $i++ ?></td>
+                                                            <td><?= $value['keperluan'] ?></td>
+                                                            <td><?= date("d-m-Y", strtotime($value['tanggal_keluar'])) ?></td>
+                                                            <td><?= date("d-m-Y", strtotime($value['tanggal_masuk'])) ?></td>
+                                                            <td>
+                                                                <?php if($value['isAccepted'] == 2) { ?>
+                                                                        <div class='text-center'>
+                                                                            <form action="actions/cetak.php" method="POST">
+                                                                                <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                                <button type="submit" class="btn btn-primary btn-sm mt-1 mb-1"><i class="fas fa-print"></i></button>
+                                                                            </form>
+                                                                            <form action="actions/hapusizinsaya.php" method="POST">
+                                                                                <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                                <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                            </form>
+                                                                        </div>
+                                                                <?php } else { ?>
+                                                                        <div class='text-center'>
+                                                                            <button class='btn btn-warning btn-sm mt-1 mb-1' disabled><i class="fas fa-clock"></i></button>
+                                                                            <form action="actions/hapusizinsaya.php" method="POST">
+                                                                                <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                                <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                            </form>
+                                                                        </div>
+                                                                <?php } ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@
     session_start();
     include ("../koneksi.php");
 
-    $izin_id = $_GET['izin_id'];
+    $izin_id = $_POST['izin_id'];
     $Del = "DELETE FROM izin WHERE izin_id = '$izin_id'";
 
     $sql = "SELECT * FROM izin WHERE izin_id = '$izin_id'";

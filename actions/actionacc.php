@@ -2,7 +2,7 @@
     session_start();
     include ("../koneksi.php");
 
-    $izin_id = $_GET['izin_id'];
+    $izin_id = $_POST['izin_id'];
     $Acc = "UPDATE izin SET isAccepted = 2 WHERE izin_id = '$izin_id'";
 
     $isAdmin = $_SESSION['isAdmin'];
