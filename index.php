@@ -11,15 +11,27 @@
         $user_id = strtolower(stripslashes($_POST["user_id"]));
 		$password = mysqli_real_escape_string($db, $_POST['password']);
 
-        $sql = "SELECT * FROM users WHERE user_id = '$user_id' AND password = '$password'";
+        $sql = "SELECT * FROM users WHERE user_id = '$user_id'";
 		$result = $db->query($sql);
+        
+        // if($result->num_rows > 0){
+        //     while($data = $result->fetch_assoc()){
+        //         $_SESSION['user_id'] = $data['user_id'];
+        //         $_SESSION['nama_lengkap'] = $data['nama_lengkap'];
+        //         $_SESSION['isAdmin'] = $data['isAdmin'];
+        //         $_SESSION['status'] = "login";
+        //         header("location:dashboard.php");
+        //     }
+        // }
 
+        $data = $result->fetch_assoc();
         if($result->num_rows > 0){
-            while($data = $result->fetch_assoc()){
+            if(password_verify($password, $data['password'])){
                 $_SESSION['user_id'] = $data['user_id'];
                 $_SESSION['nama_lengkap'] = $data['nama_lengkap'];
                 $_SESSION['isAdmin'] = $data['isAdmin'];
                 $_SESSION['status'] = "login";
+
                 header("location:dashboard.php");
             }
         }

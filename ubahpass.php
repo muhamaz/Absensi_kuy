@@ -19,11 +19,11 @@
         $oldPassword = mysqli_real_escape_string($db, $_POST['old_password']);
         $newPassword = mysqli_real_escape_string($db, $_POST['new_password']);
         $verifyPassword = mysqli_real_escape_string($db, $_POST['verify_password']);
-        // $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+        $hashedNewPassword = password_hash($newPassword, PASSWORD_DEFAULT);
 
-        if($oldPassword == $password) {
+        if(password_verify($oldPassword, $password)){
             if($newPassword == $verifyPassword) {
-                $ChangePass = "UPDATE users SET password = '$newPassword' WHERE user_id = $user_id";
+                $ChangePass = "UPDATE users SET password = '$hashedNewPassword' WHERE user_id = $user_id";
                 $db->query($ChangePass);
                 echo "<div align='center' class='alert alert-success'> Password berhasil diubah <a href='dashboard.php'><button class='btn btn-sm btn-success'>Kembali ke halaman utama</button></a> </div>";
                 $db->close();

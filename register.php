@@ -6,9 +6,9 @@
         $user_id = strtolower(stripslashes($_POST["user_id"]));
         $nama_lengkap = $_POST['nama'];
         $password = mysqli_real_escape_string($db, $_POST["password"]);
-        // $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sqldaftar = "INSERT INTO users VALUES(NULL, '$user_id','$password', '$nama_lengkap',1)";
+        $sqldaftar = "INSERT INTO users VALUES(NULL, '$user_id','$hashed_password', '$nama_lengkap',1)";
         $isExist = $db->query("SELECT user_id FROM users WHERE user_id = '$user_id'")->fetch_assoc();
 
         if($isExist) {
