@@ -61,7 +61,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             .table-responsive{
-                height: 300px;
+                height: 250px;
                 overflow: auto;
             }
         </style>
@@ -216,8 +216,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table id="datatablesSimple">
-                                                <thead>
+                                            <table class="table">
+                                                <thead class="text-center">
                                                     <tr>
                                                         <th>No.</th>
                                                         <th>Keperluan</th>
@@ -226,41 +226,40 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>Keperluan</th>
-                                                        <th>Tanggal keluar</th>
-                                                        <th>Tanggal Kembali</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
                                                     <?php $i = 1; foreach($showizin as $index=>$value): ?>
                                                         <tr>
                                                             <td><?= $i++ ?></td>
-                                                            <td><?= $value['keperluan'] ?></td>
+                                                            <td style="text-align: justify;"><?= $value['keperluan'] ?></td>
                                                             <td><?= date("d-m-Y", strtotime($value['tanggal_keluar'])) ?></td>
                                                             <td><?= date("d-m-Y", strtotime($value['tanggal_masuk'])) ?></td>
                                                             <td>
                                                                 <?php if($value['isAccepted'] == 2) { ?>
-                                                                        <div class='text-center'>
-                                                                            <form action="actions/cetak.php" method="POST">
-                                                                                <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
-                                                                                <button type="submit" class="btn btn-primary btn-sm mt-1 mb-1"><i class="fas fa-print"></i></button>
-                                                                            </form>
-                                                                            <form action="actions/hapusizinsaya.php" method="POST">
-                                                                                <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
-                                                                                <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
-                                                                            </form>
+                                                                        <div class="d-flex justify-content-center">
+                                                                            <div class="mx-1">
+                                                                                <form action="actions/cetak.php" method="POST">
+                                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                                    <button type="submit" class="btn btn-primary btn-sm mt-1 mb-1"><i class="fas fa-print"></i></button>
+                                                                                </form>
+                                                                            </div>
+                                                                            <div class="mx-1">
+                                                                                <form action="actions/hapusizinsaya.php" method="POST">
+                                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                                    <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                                </form>
+                                                                            </div>
                                                                         </div>
                                                                 <?php } else { ?>
-                                                                        <div class='text-center'>
-                                                                            <button class='btn btn-warning btn-sm mt-1 mb-1' disabled><i class="fas fa-clock"></i></button>
-                                                                            <form action="actions/hapusizinsaya.php" method="POST">
-                                                                                <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
-                                                                                <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
-                                                                            </form>
+                                                                        <div class="d-flex justify-content-center">
+                                                                            <div class="mx-1">
+                                                                                <button class='btn btn-warning btn-sm mt-1 mb-1' disabled><i class="fas fa-clock"></i></button>
+                                                                            </div>
+                                                                            <div class="mx-1">
+                                                                                <form action="actions/hapusizinsaya.php" method="POST">
+                                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                                    <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                                </form>
+                                                                            </div>
                                                                         </div>
                                                                 <?php } ?>
                                                             </td>

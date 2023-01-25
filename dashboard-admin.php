@@ -49,7 +49,7 @@
 
         <style>
             .table-responsive{
-                height: 400px;
+                height: 250px;
                 overflow: auto;
             }
         </style>
@@ -166,7 +166,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table id="datatablesSimple">
+                                    <table class="table text-center">
                                         <thead>
                                             <tr>
                                                 <th>No.</th>
@@ -178,40 +178,33 @@
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>No.</th>
-                                                <th>UID</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Keperluan</th>
-                                                <th>Tanggal keluar</th>
-                                                <th>Tanggal Kembali</th>
-                                                <th>Action</th>
-                                            </tr>
-                                        </tfoot>
                                         <tbody>
                                             <?php $i = 1; foreach($showizin as $index => $value): ?>
                                                 <tr>
                                                     <td><?=$i++?></td>
                                                     <td><?= $value['user_id'] ?></td>
                                                     <td><?= $value['nama_lengkap'] ?></td>
-                                                    <td><?= $value['keperluan'] ?></td>
+                                                    <td style="text-align: justify;"><?= $value['keperluan'] ?></td>
                                                     <td><?= date("d-m-Y", strtotime($value['tanggal_keluar'])) ?></td>
                                                     <td><?= date("d-m-Y", strtotime($value['tanggal_masuk'])) ?></td>
                                                     <td>
                                                         <?php if($value['isAccepted'] != 2){ ?>
-                                                            <div class="text-center">
-                                                                <form action="actions/actionacc.php" method="POST">
-                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
-                                                                    <button type="submit" class="btn btn-success btn-sm mt-1 mb-1"><i class="fas fa-check"></i></button>
-                                                                </form>
-                                                                <form action="actions/hapusizin.php" method="POST">
-                                                                    <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
-                                                                    <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
-                                                                </form>
+                                                            <div class="d-flex justify-content-center">
+                                                                <div class="mx-1">
+                                                                    <form action="actions/actionacc.php" method="POST">
+                                                                        <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                        <button type="submit" class="btn btn-success btn-sm mt-1 mb-1"><i class="fas fa-check"></i></button>
+                                                                    </form>
+                                                                </div>
+                                                                <div class="mx-1">
+                                                                    <form action="actions/hapusizin.php" method="POST">
+                                                                        <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
+                                                                        <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         <?php } else { ?>
-                                                            <div class="text-center">
+                                                            <div class="d-flex justify-content-center">
                                                                 <form action="actions/hapusizin.php" method="POST">
                                                                     <input type="hidden" name="izin_id" value="<?= $value['izin_id']?>">
                                                                     <button type="submit" class="btn btn-danger btn-sm mt-1 mb-1"><i class="fas fa-trash-alt"></i></button>

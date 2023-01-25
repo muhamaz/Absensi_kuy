@@ -36,6 +36,12 @@
         <link href="assets/css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            .table-responsive{
+                height: 300px;
+                overflow: auto;
+            }
+        </style>
     </head>
 
     <body class="sb-nav">
@@ -101,7 +107,7 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                            <table id="datatablesSimple">
+                                            <table class="table text-center">
                                                 <thead>
                                                     <tr>
                                                         <th width="5">No.</th>
@@ -110,14 +116,6 @@
                                                         <th>Action</th>
                                                     </tr>
                                                 </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>No.</th>
-                                                        <th>UID</th>
-                                                        <th>Nama Lengkap</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </tfoot>
                                                 <tbody>
                                                     <?php 
                                                         $i = 1;
