@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2023 at 08:29 AM
+-- Generation Time: Jan 25, 2023 at 08:50 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -36,15 +36,6 @@ CREATE TABLE `absensi` (
   `jam_keluar` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `absensi`
---
-
-INSERT INTO `absensi` (`id`, `user_id`, `nama_lengkap`, `tanggal`, `jam_masuk`, `jam_keluar`) VALUES
-(19, 101, 'Developer test', '2023-01-23', '14:08:01', '14:08:07'),
-(20, 101, 'Developer test', '2023-01-24', '06:34:40', '08:56:30'),
-(21, 102, 'Cuy', '2023-01-23', '14:19:33', '14:19:44');
-
 -- --------------------------------------------------------
 
 --
@@ -59,13 +50,6 @@ CREATE TABLE `izin` (
   `isAccepted` int(1) DEFAULT NULL,
   `keperluan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `izin`
---
-
-INSERT INTO `izin` (`izin_id`, `user_id`, `tanggal_keluar`, `tanggal_masuk`, `isAccepted`, `keperluan`) VALUES
-(11, 102, '2023-01-19', '2023-01-10', 1, 'sadnkansdkan');
 
 -- --------------------------------------------------------
 
@@ -86,8 +70,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user_id`, `password`, `nama_lengkap`, `isAdmin`) VALUES
-(1, 101, '12345', 'Developer test', 2),
-(5, 102, '12345', 'Cuy', 2);
+(7, 101, '$2y$10$nyxuOPmwzJFuCABTERBnge37NmTWZW3b.un9nJtOEh20zgE6DS3n6', 'Admin', 2);
 
 --
 -- Indexes for dumped tables
@@ -122,19 +105,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absensi`
 --
 ALTER TABLE `absensi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `izin`
 --
 ALTER TABLE `izin`
-  MODIFY `izin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `izin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Constraints for dumped tables
